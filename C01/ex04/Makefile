@@ -1,10 +1,11 @@
-NAME 	=
+NAME 	=replace
 
 CC 		= c++
 FLAGS 	= -Wall -Wextra -Werror -std=c++98
 RM 		= rm -rf
 
 SRCS 	= $(wildcard *.cpp)
+#SRCS	= main.cpp replace.cpp
 OBJS	= $(SRCS:.cpp=.o)
 
 #Colors:
