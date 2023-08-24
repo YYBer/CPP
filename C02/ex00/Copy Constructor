@@ -1,0 +1,19 @@
+Why we need copy constructor?
+
+Copying Objects: When you want to create a new object that is an exact copy of an existing object, a copy constructor is used. This is crucial for creating copies of objects, especially when objects have dynamically allocated resources (like memory) or complex internal structures.
+
+Passing Objects by Value: When you pass an object to a function by value (i.e., not by reference or pointer), a copy of the object is made. The copy constructor is used in this scenario to create a new object with the same data as the original. This allows the function to work with a local copy of the object without affecting the original.
+
+Returning Objects from Functions: When you return an object from a function, a copy of the object is typically made to ensure that the returned object is valid even after the function call ends. The copy constructor is used here to create the copy that's returned to the caller.
+
+Working with Containers: Copy constructors are used extensively when working with standard library containers like vectors, lists, and maps. These containers manage collections of objects, and when you add or modify elements in the container, the copy constructor is used to ensure proper handling of the objects.
+
+Deep Copying: If an object contains dynamically allocated memory or resources (like pointers), the copy constructor can ensure that a deep copy is made, meaning that the new object has its own separate copy of the data, avoiding issues with shared resources and ownership.
+
+Polymorphism and Inheritance: In polymorphic scenarios (using pointers or references to base class objects), copy constructors of derived classes are used to create copies of derived objects while preserving their specific characteristics.
+
+Custom Behavior: Copy constructors can be defined with custom behavior to handle special cases, perform specific initialization, or implement deep copying strategies.
+
+Immutable Objects: Copy constructors can be used to create immutable objects, ensuring that the object's data cannot be modified after creation.
+
+Remember that if you don't define a copy constructor for your class, the compiler will generate a default copy constructor that performs a shallow copy of the object's members. In some cases, this default behavior might not be suitable, especially when your class contains dynamically allocated memory or other resources that need to be managed properly. In such cases, it's important to define a copy constructor to ensure correct behavior when copying objects.
