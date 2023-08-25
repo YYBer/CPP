@@ -6,16 +6,16 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:12:29 by yli               #+#    #+#             */
-/*   Updated: 2023/08/25 17:02:11 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/25 19:23:17 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main()
 {
-    FragTrap frag("Clack");
+    Diamond dia("Ben");
 
-    frag.highFivesGuys();
-    frag.attack("Redu");
+    dia.attack("Jack");
+    dia.whoAmI();
 }

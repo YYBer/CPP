@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/25 16:12:29 by yli               #+#    #+#             */
-/*   Updated: 2023/08/25 17:02:11 by yli              ###   ########.fr       */
+/*   Created: 2023/08/25 16:11:02 by yli               #+#    #+#             */
+/*   Updated: 2023/08/25 16:57:30 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
-int main()
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+
+class   FragTrap: public ClapTrap
 {
-    FragTrap frag("Clack");
+    public:
+        FragTrap(std::string name);
+        ~FragTrap(void);
+        void    highFivesGuys(void);
+};
 
-    frag.highFivesGuys();
-    frag.attack("Redu");
-}
+#endif
