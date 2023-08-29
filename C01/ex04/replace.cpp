@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:06:49 by yli               #+#    #+#             */
-/*   Updated: 2023/08/22 17:13:46 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/29 19:40:22 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void Replace::ft_replace(std::string s1, std::string s2)
     {
         if (ifs.good())
         {
-            std::getline(ifs, input);
+            std::getline(ifs, input, '\0');
             std::ofstream ofs(this->_outfile.c_str());
             pos = input.find(s1);
             while (pos != std::string::npos)

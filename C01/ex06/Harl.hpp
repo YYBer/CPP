@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 17:16:35 by yli               #+#    #+#             */
-/*   Updated: 2023/08/22 18:39:00 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/29 19:47:32 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,5 @@ class Harl
         void    warning(void);
         void    error(void);
 };
-
-typedef void (Harl::*t_func)(void);
 
 #endif
