@@ -6,7 +6,7 @@
 #    By: yli <yli@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/22 20:51:50 by yli               #+#    #+#              #
-#    Updated: 2023/08/22 20:51:51 by yli              ###   ########.fr        #
+#    Updated: 2023/08/29 16:25:46 by yli              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ all:	$(NAME)
 $(NAME):
 		@printf "$(GREEN) -Compiling $(NAME)... $(RESET)\n"
 		@ $(CC) $(FLAGS) $(SRCS) -o $(NAME)
-		@printf "$(GREEN) -Comiling finished. $(RESET)\n"
+		@printf "$(GREEN) -Compiling finished. $(RESET)\n"
 
 clean:
 		@$(RM) $(OBJS)
