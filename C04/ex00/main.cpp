@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replace.hpp                                        :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 18:06:53 by yli               #+#    #+#             */
-/*   Updated: 2023/08/29 16:30:55 by yli              ###   ########.fr       */
+/*   Created: 2023/08/29 15:33:28 by yli               #+#    #+#             */
+/*   Updated: 2023/08/29 18:06:05 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REPLACE_HPP
-#define REPLACE_HPP
+#include "Animal.hpp"
 
-# include <iostream>
-# include <fstream>
-# include <string>
-# include <cstdlib>
-
-class Replace
+int main()
 {
-    public:
-        Replace(std::string filename);
-        ~Replace(void);
-        void ft_replace(std::string s1, std::string s2);
-    
-    private:
-        std::string _infile;
-        std::string _outfile;        
-};
+    const Animal* meta = new Animal();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
+    i->makeSound(); //will output the cat sound!
+    j->makeSound();
+    meta->makeSound();
 
-#endif
+    delete meta;
+    delete j;
+    delete i;
+    return (0);
+}

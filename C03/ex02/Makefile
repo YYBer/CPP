@@ -14,10 +14,10 @@ RESET	=	\033[0m
 
 all:	$(NAME)
 
-$(NAME):
+$(NAME):	$(OBJS)
 		@printf "$(GREEN) -Compiling $(NAME)... $(RESET)\n"
 		@ $(CC) $(FLAGS) $(SRCS) -o $(NAME)
-		@printf "$(GREEN) -Comiling finished. $(RESET)\n"
+		@printf "$(GREEN) -Compiling finished. $(RESET)\n"
 
 clean:
 		@$(RM) $(OBJS)
