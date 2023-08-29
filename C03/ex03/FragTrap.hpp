@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:11:02 by yli               #+#    #+#             */
-/*   Updated: 2023/08/25 16:57:30 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/29 15:11:52 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
-class   FragTrap: public ClapTrap
+class   FragTrap: virtual public ClapTrap
 {
     public:
         FragTrap(std::string name);

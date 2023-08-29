@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:29:49 by yli               #+#    #+#             */
-/*   Updated: 2023/08/25 16:54:38 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/29 15:11:36 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <iostream>
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap 
+class ScavTrap : virtual public ClapTrap 
 {
     public:
     ScavTrap(std::string name);

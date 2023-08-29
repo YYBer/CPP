@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 16:12:29 by yli               #+#    #+#             */
-/*   Updated: 2023/08/25 19:23:17 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/29 15:21:50 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int main()
 {
+    std::string str = "Jack";
     Diamond dia("Ben");
 
-    dia.attack("Jack");
+    dia.attack(str);
     dia.whoAmI();
 }
