@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 23:26:53 by yli               #+#    #+#             */
-/*   Updated: 2023/08/25 00:12:01 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/30 15:14:45 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,22 @@ ClapTrap <name> attacks <target>, causing <damage> points of damage!*/
 ClapTrap::ClapTrap(std::string name):_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
     std::cout << "ClapTrap " << this->_name << " is created!" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap& other)
+{
+    std::cout << "copy ClapTrap is created!" << std::endl;
+    *this = other;
+}
+
+ClapTrap& ClapTrap::operator = (const ClapTrap& other)
+{
+    std::cout << "ClapTrap assignment operator is created!" << std::endl;
+    this->_name = other._name;
+    this->_attackDamage = other._attackDamage;
+    this->_attackDamage = other._energyPoints;
+    this->_hitPoints = other._hitPoints;
+    return *this;
 }
 
 ClapTrap::~ClapTrap(void)

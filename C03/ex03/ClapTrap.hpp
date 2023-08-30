@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 23:26:50 by yli               #+#    #+#             */
-/*   Updated: 2023/08/29 13:45:11 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/30 15:15:55 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ class   ClapTrap
 {
     public:
         ClapTrap(std::string name);
+        ClapTrap(const ClapTrap& other);
+        ClapTrap& operator = (const ClapTrap& other);
         ~ClapTrap(void);
         void    attack(const std::string& target);
         void    takeDamage(unsigned int amount);
@@ -30,5 +32,8 @@ class   ClapTrap
         unsigned int _energyPoints;
         unsigned int _attackDamage;
 };
+
+
+
 
 #endif

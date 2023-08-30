@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/25 16:29:49 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 14:18:06 by yli              ###   ########.fr       */
+/*   Created: 2023/08/29 15:33:28 by yli               #+#    #+#             */
+/*   Updated: 2023/08/30 13:45:28 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#include "Animal.hpp"
 
-# include <iostream>
-# include "ClapTrap.hpp"
-
-class ScavTrap : public ClapTrap 
+int main()
 {
-    public:
-    ScavTrap(std::string name);
-    ~ScavTrap(void);
-    void    guardGate(void);
-    void    attack(const std::string& target);
-};
+    //const Animal* meta = new Animal();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
+    i->makeSound(); //will output the cat sound!
+    j->makeSound();
+    //meta->makeSound();
 
-
-#endif
+    //delete meta;
+    delete j;
+    delete i;
+}

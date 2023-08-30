@@ -1,62 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:34:23 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 15:04:40 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/30 14:09:29 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-Animal::Animal(void)
+WrongAnimal::WrongAnimal(void)
 {
     this->_type = "Animal";
 }
 
-Animal::Animal(const Animal& other)
-{
-    std::cout << "Animal copied!" << std::endl;
-    *this = other;
-}
-
-Animal& Animal::operator = (const Animal& other)
-{
-    std::cout << "Animal assignment operator created!" << std::endl;
-    if (this != & other)
-        this->_type = other._type;
-    return *this;
-}
-
-void    Animal::makeSound(void) const
+void    WrongAnimal::makeSound(void)
 {
     std::cout << "Animal: "<< "WAWA!" << std::endl;
 }
 
-std::string    Animal::getType(void) const
+std::string    WrongAnimal::getType(void) const
 {
     return this->_type;
 }
 
-Dog::Dog(void): Animal()
+WrongDog::WrongDog(void): WrongAnimal()
 {
     this->_type = "Dog";
 }
 
-void    Dog::makeSound(void) const
+void    WrongDog::makeSound(void)
 {
-    std::cout << "Dog: "<< "AWhuoAWhuo!" << std::endl;
+    std::cout << "WrongDog: "<< "AWhuoAWhuo!" << std::endl;
 }
 
-Cat::Cat(void): Animal()
+WrongCat::WrongCat(void): WrongAnimal()
 {
     this->_type = "Cat";
 }
 
-void    Cat::makeSound(void) const
+void    WrongCat::makeSound(void)
 {
-    std::cout << "Cat: "<< "MiaoMiao!" << std::endl;
+    std::cout << "WrongCat: "<< "MiaoMiao!" << std::endl;
 }

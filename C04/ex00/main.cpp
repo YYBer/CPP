@@ -6,11 +6,12 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:33:28 by yli               #+#    #+#             */
-/*   Updated: 2023/08/29 18:06:05 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/30 14:07:29 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
 int main()
 {
@@ -26,5 +27,20 @@ int main()
     delete meta;
     delete j;
     delete i;
+    
+    std::cout << std::endl;
+
+    WrongAnimal* wmeta = new WrongAnimal();
+    WrongAnimal* wj = new WrongDog();
+    WrongAnimal* wi = new WrongCat();
+    std::cout << wj->getType() << " " << std::endl;
+    std::cout << wi->getType() << " " << std::endl;
+    wi->makeSound();
+    wj->makeSound();
+    wmeta->makeSound();
+
+    delete wmeta;
+    delete wj;
+    delete wi;
     return (0);
 }

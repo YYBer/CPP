@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 17:04:45 by yli               #+#    #+#             */
-/*   Updated: 2023/08/29 15:19:50 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/30 10:56:25 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ Diamond::~Diamond(void)
 void    Diamond::whoAmI(void)
 {
     //this->_name = _name + "_clap_name";
-    std::cout << "^Diamond^ " << "I am "<< this->_name << std::endl;
+    std::cout << "^Diamond^ " << "I am "<< this->_name << " but in ClapTrap my name is " << this->ClapTrap::_name << std::endl;
 }
