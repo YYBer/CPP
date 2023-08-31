@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 13:41:46 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 19:15:34 by yli              ###   ########.fr       */
+/*   Created: 2023/08/30 17:48:53 by yli               #+#    #+#             */
+/*   Updated: 2023/08/30 17:52:31 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
+#include "Cat.hpp"
 
-Brain::Brain(void)
+Cat::Cat(void): Animal()
 {
-    std::cout << "Brain is created. There are 100 ideas in the brain!" << std::endl;
+    this->_type = "Cat";
+    this->_brain = new Brain();
 }
 
-Brain::Brain(const Brain& other)
+void    Cat::makeSound(void) const
 {
-    std::cout << "Brain is copying!" << std::endl;
+    std::cout << "Cat: "<< "MiaoMiao!" << std::endl;
+}
+
+Cat::Cat(const Cat& other)
+{
     *this = other;
 }
 
-Brain& Brain::operator= (const Brain& other)
+Cat& Cat::operator=(const Cat& other)
 {
-    for(int i = 0; i < 100; i++)
-        this->_ideas[i] = other._ideas[i];
+    this->_brain = new Brain(*other._brain);
+    std::cout << "cat brain is running!" << std::endl;
+    this->_type = other._type;
     return *this;
 }
 
-Brain::~Brain(void)
+Cat::~Cat(void)
 {
-    std::cout << "Brain is destroyed." << std::endl;
+    delete this->_brain;
 }

@@ -1,7 +1,7 @@
 NAME 	= Animal
 
 CC 		= c++
-FLAGS 	= -Wall -Wextra -Werror -std=c++98
+FLAGS 	= -Wall -Wextra -Werror -std=c++98 -g3
 RM 		= rm -rf
 
 SRCS 	= $(wildcard *.cpp)

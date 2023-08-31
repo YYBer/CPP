@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 15:34:23 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 17:15:15 by yli              ###   ########.fr       */
+/*   Created: 2023/08/30 20:17:21 by yli               #+#    #+#             */
+/*   Updated: 2023/08/30 21:02:18 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "Ice.hpp"
 
-Animal::Animal(void)
+Ice::Ice(void): AMateria("Ice")
 {
-    this->_type = "Animal";
 }
 
-Animal::Animal(const Animal& other)
+Ice::Ice (const Ice & other)
 {
-    std::cout << "Animal copied!" << std::endl;
     *this = other;
 }
 
-Animal& Animal::operator = (const Animal& other)
+Ice& Ice::operator=(const Ice& other)
 {
-    std::cout << "Animal assignment operator created!" << std::endl;
     this->_type = other._type;
     return *this;
 }
-
-void    Animal::makeSound(void) const
+// their member function clone() will return a new instance of the same type (i.e., if you clone an Ice Materia,
+// you will get a new Ice Materia).
+AMateria* Ice::clone() const
 {
-    std::cout << "Animal: "<< "WAWA!" << std::endl;
+    return (new Ice(*this));
 }
 
-std::string    Animal::getType(void) const
+void    Ice::use(ICharacter& target)
 {
-    return this->_type;
+    std::cout << "* shoots an ice bolt at "  << ICharacter::_name  << " *"<< std::endl;
 }

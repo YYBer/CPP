@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 13:41:42 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 15:29:43 by yli              ###   ########.fr       */
+/*   Created: 2023/08/30 21:08:28 by yli               #+#    #+#             */
+/*   Updated: 2023/08/30 21:10:10 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
-# include <iostream>
-class Brain
-{
-    private:
-        std::string _ideas[100];
-    public:
-        Brain(void);
-        Brain(const Brain& other);
-        Brain& operator=(const Brain& other);
-        ~Brain(void);
-};
+#include "IMateriaSource.hpp"
+
+
 #endif

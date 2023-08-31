@@ -1,41 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   InstantAnimal.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 15:34:23 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 17:15:15 by yli              ###   ########.fr       */
+/*   Created: 2023/08/30 19:57:35 by yli               #+#    #+#             */
+/*   Updated: 2023/08/30 20:03:09 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "InstantAnimal.hpp"
 
-Animal::Animal(void)
+
+InstantAnimal::InstantAnimal(void)
 {
     this->_type = "Animal";
 }
 
-Animal::Animal(const Animal& other)
+InstantAnimal::InstantAnimal(const InstantAnimal& other)
 {
     std::cout << "Animal copied!" << std::endl;
     *this = other;
 }
 
-Animal& Animal::operator = (const Animal& other)
+InstantAnimal& InstantAnimal::operator = (const InstantAnimal& other)
 {
     std::cout << "Animal assignment operator created!" << std::endl;
     this->_type = other._type;
     return *this;
 }
 
-void    Animal::makeSound(void) const
+void    InstantAnimal::makeSound(void) const
 {
-    std::cout << "Animal: "<< "WAWA!" << std::endl;
+    std::cout << "Animal makeSound called" << std::endl;
 }
 
-std::string    Animal::getType(void) const
+std::string    InstantAnimal::getType(void) const
 {
     return this->_type;
 }
+
+

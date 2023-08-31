@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 13:41:42 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 15:29:43 by yli              ###   ########.fr       */
+/*   Created: 2023/08/30 17:12:36 by yli               #+#    #+#             */
+/*   Updated: 2023/08/30 17:15:06 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-#define BRAIN_HPP
+#include "Dog.hpp"
 
-# include <iostream>
-class Brain
+Dog::Dog(void): Animal()
 {
-    private:
-        std::string _ideas[100];
-    public:
-        Brain(void);
-        Brain(const Brain& other);
-        Brain& operator=(const Brain& other);
-        ~Brain(void);
-};
-#endif
+    this->_type = "Dog";
+}
+
+void    Dog::makeSound(void) const
+{
+    std::cout << "Dog: "<< "AWhuoAWhuo!" << std::endl;
+}
