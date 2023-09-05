@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:19:43 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 21:20:31 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/31 13:13:42 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define ICHARACTER_HPP
 
 #include "AMateria.hpp"
+
+
+class AMateria;
 
 class ICharacter
 {
@@ -25,8 +28,5 @@ class ICharacter
         virtual void use(int idx, ICharacter& target) = 0;
     
 };
-
-
-
 
 #endif

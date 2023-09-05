@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:17:21 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 21:02:18 by yli              ###   ########.fr       */
+/*   Updated: 2023/08/31 12:58:23 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Ice::Ice(void): AMateria("Ice")
 {
 }
 
-Ice::Ice (const Ice & other)
+Ice::Ice (const Ice & other): AMateria("Ice")
 {
     *this = other;
 }
@@ -35,5 +35,5 @@ AMateria* Ice::clone() const
 
 void    Ice::use(ICharacter& target)
 {
-    std::cout << "* shoots an ice bolt at "  << ICharacter::_name  << " *"<< std::endl;
+    std::cout << "* shoots an ice bolt at "  << target.getName()  << " *"<< std::endl;
 }
