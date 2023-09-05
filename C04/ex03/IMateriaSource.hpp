@@ -6,12 +6,14 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:31:40 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 20:33:38 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/05 14:26:33 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMATERIASOURCE
 # define IMATERIASOURCE
+
+#include "AMateria.hpp"
 
 class IMateriaSource
 {

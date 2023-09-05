@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 21:08:38 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 21:47:35 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/05 15:26:42 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Character::Character(std::string const& name): _name(name)
 {
-    for(int i; i < 4 ; i++)
+    for(int i = 0; i < 4 ; i++)
         this->_inventory[i] = NULL;
     std::cout << "Character: " << this->_name << " is created!" << std::endl;
 }
@@ -27,7 +27,7 @@ Character::Character(Character const & other): _name(other._name)
 Character& Character::operator=(const Character& other)
 {
     this->_name = other._name;
-    for(int i; i < 4 ; i++)
+    for(int i = 0; i < 4 ; i++)
         this->_inventory[i] = other._inventory[i];
     return *this;
 }
@@ -44,11 +44,11 @@ void    Character::equip(AMateria* m)
         if (this->_inventory[i] == NULL)
         {
             this->_inventory[i] = m;
-            std::cout << "equipped" << std::endl;
+            std::cout << "Character: " << this->_name << " is equipped with Nr." << this->_inventory[i]  <<  &m->getType() << std::endl;
             return ;
         }
     }
-    std::cout << "not equip" << std::endl;
+    std::cout << "Character: " << this->_name << "can not equip AMateria." << std::endl;
 }
 
 void    Character::unequip(int idx)
@@ -63,13 +63,13 @@ void    Character::unequip(int idx)
     std::cout << "Character: " << this->_name << "can not unquip" << std::endl;
 }
 
-void Character::use(int idx, Character& target)
+void Character::use(int idx, ICharacter& target)
 {
     if (this->_inventory[idx])
     {
         this->_inventory[idx]->use(target);
         std::cout << "Character: " << this->_name << " use " << this->_inventory[idx]->getType() << std::endl;
     }
-    std::cout << "Character: " << this->_name << " can not use "<< std::endl;
+    std::cout << "Character: " << this->_name << " can not use Nr." << idx << " inventory." << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:31:43 by yli               #+#    #+#             */
-/*   Updated: 2023/08/31 13:24:35 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/05 14:46:40 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 MateriaSource::MateriaSource(void)
 {
+    std::cout << "MateriaSource constructor is called" << std::endl;
     for (int i = 0; i < 4; i++)
         this->_materias[i] = NULL;
 }
@@ -62,8 +63,7 @@ void    MateriaSource::learnMateria(AMateria* other)
         if (this->_materias[i] == NULL)
         {
             this->_materias[i] = other;
-            std::cout << "learned"<< std::endl;
+            std::cout << "MateriaSource: "<< this->_materias[i] << " is learned."<< std::endl;
         }
-        std::cout << "can not lerned" << std::endl;
     }
 }
