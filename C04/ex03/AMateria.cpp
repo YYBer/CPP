@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:12:52 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 21:00:21 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/06 20:07:07 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ AMateria::AMateria(AMateria const & other)
 
 std::string const & AMateria::getType(void) const
 {
+    //std::cout << "AMateria: " << this->_type << std::endl;
     return this->_type;
 }
 
@@ -41,13 +42,3 @@ void AMateria::use(ICharacter& target)
 {
     std::cout << "use func in AM called for " << target.getName() << std::endl;
 }
-
-
-
-// void AMateria::use(ICharacter& target)
-// {
-//     if (target == "Ice")
-//         std::cout << "* shoots an ice bolt at "  << ICharacter::_name << std::endl;
-//     if (target == "Cure")
-//         std::cout << "* heals " << ICharacter::_name << "'s wounds *" << std::endl;
-// }

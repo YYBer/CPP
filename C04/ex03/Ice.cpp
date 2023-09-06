@@ -6,17 +6,17 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:17:21 by yli               #+#    #+#             */
-/*   Updated: 2023/08/31 12:58:23 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/05 18:08:39 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-Ice::Ice(void): AMateria("Ice")
+Ice::Ice(void): AMateria("ice")
 {
 }
 
-Ice::Ice (const Ice & other): AMateria("Ice")
+Ice::Ice (const Ice & other): AMateria("ice")
 {
     *this = other;
 }
