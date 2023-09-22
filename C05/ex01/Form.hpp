@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 19:09:06 by user              #+#    #+#             */
-/*   Updated: 2023/09/08 19:30:27 by user             ###   ########.fr       */
+/*   Updated: 2023/09/11 16:57:33 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 #define FORM_HPP
 
-
+#include "Bureaucrat.hpp"
 #include <iostream>
 
 class Form
@@ -52,13 +52,13 @@ class Form
             };
         };
 
-        std::string getName(void) const;
         int getGrade(void) const;
-
-        void increment(void);
-        void decrement(void);
-    
+        int getExecuteGrade(void) const;
+        std::string getName(void) const;
+        bool    isSigned(void) const;
+        void    signForm(Bureaucrat const & other);
 };
 
+std::ostream &operator<<(std::ostream &o, Form const & other);
 
 #endif

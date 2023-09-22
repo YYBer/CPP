@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:34:19 by yli               #+#    #+#             */
-/*   Updated: 2023/08/30 12:46:20 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/15 17:53:10 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ class WrongAnimal
         std::string _type;
     public:
         WrongAnimal(void);
-        virtual ~WrongAnimal(void){};
+        ~WrongAnimal(void){};
         std::string getType(void) const;
         void makeSound(void);
 };
 
-class WrongDog: virtual public WrongAnimal
+class WrongDog: public WrongAnimal
 {
     public:
         WrongDog(void);
@@ -34,7 +34,7 @@ class WrongDog: virtual public WrongAnimal
         void makeSound(void);
 };
 
-class WrongCat: virtual public WrongAnimal
+class WrongCat: public WrongAnimal
 {
     public:
         WrongCat(void);
