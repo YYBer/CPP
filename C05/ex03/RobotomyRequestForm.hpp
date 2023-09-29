@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:57:51 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 14:57:52 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/25 16:23:41 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class RobotmyRequestForm: public AForm
     RobotmyRequestForm(const RobotmyRequestForm& other);
     RobotmyRequestForm& operator=(const RobotmyRequestForm& other);
     void    execute(Bureaucrat const & executor) const;
-
+    AForm*   target(std::string const& target);
     private:
         std::string _name;
 };

@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:58:02 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 15:46:51 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/25 16:23:52 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ class ShrubberyCreationForm: public AForm
                 return ("open file failed.");
             };
     };
-    void    execute(Bureaucrat const & executor) const;    
+    void    execute(Bureaucrat const & executor) const;
+    AForm*   target(std::string const& target);   
 };
 
 

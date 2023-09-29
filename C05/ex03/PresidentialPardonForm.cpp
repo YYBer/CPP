@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:57:32 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 14:57:33 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/25 16:23:31 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,10 @@ void    PresidentialPardonForm::execute(Bureaucrat const & executor) const
     if (!this->isSigned())
         throw SignException();
     std::cout << this->_name << " has been pardoned by Zaphod Beeblebrox." << std::endl; 
+}
+
+AForm*   PresidentialPardonForm::target(std::string const& target)
+{
+    return (new PresidentialPardonForm(target));
 }
 

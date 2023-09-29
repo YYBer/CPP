@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:57:57 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 15:46:36 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/25 16:24:28 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,9 @@ void    ShrubberyCreationForm::execute(Bureaucrat const& executor) const
 "                           .::(@:).  \n";
     outfile << tree;
     outfile.close();
+}
+
+AForm*   ShrubberyCreationForm::target(std::string const& target)
+{
+    return (new ShrubberyCreationForm(target));
 }

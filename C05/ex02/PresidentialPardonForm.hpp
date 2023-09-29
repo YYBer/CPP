@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/25 14:57:40 by yli               #+#    #+#             */
+/*   Updated: 2023/09/25 14:57:41 by yli              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 //PresidentialPardonForm: Required grades: sign 25, exec 5 Informs that <target> has been pardoned by Zaphod Beeblebrox.
 
 
@@ -15,16 +27,6 @@ class PresidentialPardonForm: public AForm
     PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 
     void    execute(Bureaucrat const & executor) const;
-    class RightException: public std::exception
-    {
-        public:
-            virtual const char* what() const throw();
-    };
-    class SignException: public std::exception
-    {
-        public:
-            virtual const char* what() const throw();
-    };
     private:
         std::string _name;
 };

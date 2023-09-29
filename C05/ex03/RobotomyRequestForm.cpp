@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:57:44 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 14:57:45 by yli              ###   ########.fr       */
+/*   Updated: 2023/09/25 16:25:08 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void    RobotmyRequestForm::execute(Bureaucrat const & executor) const
         std::cout << this->_name << " the robotomy failed." << std::endl;
 }
 
+AForm*   RobotmyRequestForm::target(std::string const& target)
+{
+    return (new RobotmyRequestForm(target));
+}
 
 
 

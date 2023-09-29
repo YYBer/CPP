@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 14:57:51 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 14:57:52 by yli              ###   ########.fr       */
+/*   Created: 2023/09/25 14:57:40 by yli               #+#    #+#             */
+/*   Updated: 2023/09/25 16:23:28 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//RobotomyRequestForm: Required grades: sign 72, exec 45
-//Makes some drilling noises. Then, informs that <target> has been robotomized successfully 50% of the time. Otherwise, informs that the robotomy failed.
+//PresidentialPardonForm: Required grades: sign 25, exec 5 Informs that <target> has been pardoned by Zaphod Beeblebrox.
 
-#ifndef ROBOTOMYREQUESTFORM
-#define ROBOTOMYREQUESTFORM
+
+#ifndef PRESIDENTIALPARDONFORM
+#define PRESIDENTIALPARDONFORM
 
 #include "AForm.hpp"
-#include <cstdlib>
-#include <iostream>
 
-class RobotmyRequestForm: public AForm
+class PresidentialPardonForm: public AForm
 {
     public:
-    RobotmyRequestForm(std::string name);
-    ~RobotmyRequestForm(void);
-    RobotmyRequestForm(const RobotmyRequestForm& other);
-    RobotmyRequestForm& operator=(const RobotmyRequestForm& other);
-    void    execute(Bureaucrat const & executor) const;
+    PresidentialPardonForm(std::string name);
+    ~PresidentialPardonForm(void);
+    PresidentialPardonForm(const PresidentialPardonForm& other);
+    PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 
+    AForm*   target(std::string const& target);
+    void    execute(Bureaucrat const & executor) const;
     private:
         std::string _name;
 };
+
 #endif
