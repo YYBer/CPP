@@ -17,11 +17,13 @@ class ScalarConverter
         ScalarConverter& operator=(const ScalarConverter& other);
         void    convert(void);
         void  checkDigit(void);
-        void  checkFloat(void);
+        bool  checkFloat(void);
+        void  checkFloat2(void);
         void  checkChar(void);
         bool  checkContainInt(void);
         bool  checkAllInt(void);
-        void  checkDouble(void);
+        bool  checkDouble(void);
+        void  checkDouble2(void);
         bool  checkFormat(void);
         int   checkTimes(char c);
 

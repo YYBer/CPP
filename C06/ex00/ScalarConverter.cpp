@@ -36,6 +36,14 @@ void  ScalarConverter::checkDigit(void)
       _str = "Non displayable";
    else
       _char = (char)_int;
+   std::cout << std::fixed << std::setprecision(1);
+   if (_char)
+      std::cout << "char: " << _char << std::endl;
+   else
+      std::cout << "char:  " << _str << std::endl;
+   std::cout << "int: " << _int << std::endl;
+   std::cout << "float: " << _float  << "f" << std::endl;
+   std::cout << "double: " << _double << std::endl;
 }
 
 bool  ScalarConverter::checkContainInt(void)
@@ -73,10 +81,10 @@ int   ScalarConverter::checkTimes(char c)
 
 bool  ScalarConverter::checkAllInt(void)
 {
-   for(unsigned long i = 0; i < _argv.size(); ++i)
+   if (_argv[0] < 45 || _argv[0]> '9' || (_argv[0] > 45 && _argv[0] < '0'))
+      return false;
+   for(unsigned long i = 1; i < _argv.size(); ++i)
    {
-      if (_argv[0] == '-')
-         continue;
       if (_argv[i]> '9' || _argv[i] < '0')
          return false;
    }
@@ -84,34 +92,63 @@ bool  ScalarConverter::checkAllInt(void)
    return true;
 }
 
-void  ScalarConverter::checkFloat(void)
+bool  ScalarConverter::checkFloat(void)
 {
    for(unsigned long i = 0; i < _argv.size(); ++i)
    {
       if (_argv.find('.') != _argv.size()-1 && _argv.back() == 'f' && checkContainInt() && !checkFormat() && checkTimes('f') == 1 && checkTimes('.') == 1)
-      {
          _isFloat = true;
-         _int = atoi(this->_argv.c_str());
-         _float = atof(this->_argv.c_str());
-         _double = std::atof(this->_argv.c_str());
-         _char = (char)_int;
-      }
+      return true;
    }
+   return false;
 }
 
-void  ScalarConverter::checkDouble(void)
+void  ScalarConverter::checkFloat2(void)
 {
-   for(unsigned long i = 0; i < _argv.size(); ++i)
+   _int = atoi(this->_argv.c_str());
+   _float = atof(this->_argv.c_str());
+   _double = std::atof(this->_argv.c_str());
+   _char = (char)_int;
+   std::cout << std::fixed << std::setprecision(1);
+   if (_char)
+      std::cout << "char: " << _char << std::endl;
+   else
+      std::cout << "char:  " << _str << std::endl;
+   std::cout << "int: " << _int << std::endl;
+   std::cout << "float: " << _float  << "f" << std::endl;
+   std::cout << "double: " << _double << std::endl;
+}
+
+bool  ScalarConverter::checkDouble(void)
+{
+   if (_argv[0] == '-')
+      if (checkTimes('-') != 1)
+         return false;
+   for(unsigned long i = 1; i < _argv.size(); ++i)
    {
       if (_argv.find('.') != _argv.size()-1 && checkContainInt() && !checkFormat() && checkTimes('.') == 1)
       {
          _isDouble = true;
-         _int = atoi(this->_argv.c_str());
-         _float = atof(this->_argv.c_str());
-         _double = std::atof(this->_argv.c_str());
-         _char = (char)_int;
+         return true;
       }
    }
+   return false;
+}
+
+void  ScalarConverter::checkDouble2(void)
+{
+   _int = atoi(this->_argv.c_str());
+   _float = atof(this->_argv.c_str());
+   _double = std::atof(this->_argv.c_str());
+   _char = (char)_int;
+   std::cout << std::fixed << std::setprecision(1);
+   if (_char)
+      std::cout << "char: " << _char << std::endl;
+   else
+      std::cout << "char:  " << _str << std::endl;
+   std::cout << "int: " << _int << std::endl;
+   std::cout << "float: " << _float  << "f" << std::endl;
+   std::cout << "double: " << _double << std::endl;
 }
 
 void  ScalarConverter::checkChar(void)
@@ -123,20 +160,22 @@ void  ScalarConverter::checkChar(void)
 void    ScalarConverter::convert(void)
 {
    if (checkAllInt())
-      checkDigit();
-   checkFloat();
-   checkDouble();
-   if (!_isFloat && !_isInt && !_isDouble)
    {
-      checkChar();
+      checkDigit();
+      std::cout << "0\n";
       return;
    }
-   std::cout << std::fixed << std::setprecision(1);
-   if (_char)
-      std::cout << "char: " << _char << std::endl;
-   else
-      std::cout << "char:  " << _str << std::endl;
-   std::cout << "int: " << _int << std::endl;
-   std::cout << "float: " << _float  << "f" << std::endl;
-   std::cout << "double: " << _double << std::endl;
+   if (checkFloat())
+   {
+      checkFloat2();
+      std::cout << "1\n";
+      return;
+   }
+   if (checkDouble())
+   {
+      checkDouble2();
+      std::cout << "2\n";
+      return;
+   }
+   checkChar();
 }
