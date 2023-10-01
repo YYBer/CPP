@@ -2,6 +2,11 @@
 #define    SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <iomanip>
+#include <cstdlib>
 
 class ScalarConverter
 {
@@ -11,12 +16,19 @@ class ScalarConverter
         ScalarConverter(const ScalarConverter& other);
         ScalarConverter& operator=(const ScalarConverter& other);
         void    convert(void);
-        bool  checkDigit(void);
-        bool  checkFloat(void);
+        void  checkDigit(void);
+        void  checkFloat(void);
+        void  checkChar(void);
+        bool  checkContainInt(void);
+        bool  checkAllInt(void);
+        void  checkDouble(void);
+        bool  checkFormat(void);
+        int   checkTimes(char c);
 
     private:
         std::string _argv;
-        char*   _str;
+        const char*   _str;
+        char  _char;
         int _int;
         float   _float;
         double  _double;
