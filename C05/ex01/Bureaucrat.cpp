@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 21:08:55 by yli               #+#    #+#             */
-/*   Updated: 2023/09/07 13:34:05 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/02 21:48:49 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ Bureaucrat::Bureaucrat(std::string const& name, int grade): _name(name), _grade(
         throw Bureaucrat::GradeTooHighException();
     else if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
-    // else
-    //     this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other)
@@ -30,7 +28,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other)
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
     this->_grade = other._grade;
-    //this->_name = other._name;
     return *this;
 }
 

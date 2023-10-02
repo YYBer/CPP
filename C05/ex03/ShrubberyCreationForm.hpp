@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:58:02 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 16:23:52 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/02 21:52:06 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ class Bureaucrat;
 
 class ShrubberyCreationForm: public AForm
 {
-    private:
-        std::string _name;
     public:
     ShrubberyCreationForm(std::string name);
     ~ShrubberyCreationForm(void);

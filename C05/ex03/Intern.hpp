@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/02 21:49:10 by yli               #+#    #+#             */
+/*   Updated: 2023/10/02 21:49:11 by yli              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef    INTERN_HPP
 #define    INTERN_HPP
 
 #include <iostream>
-//#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -16,24 +27,6 @@ class Intern
         Intern(const Intern& other);
         Intern& operator=(const Intern& other);
         AForm*   makeForm(std::string const & formName, std::string const &target);
-        class FormDoesNotExistException: public std::exception{
-            virtual const char* what() const throw(){
-                return "Form does not exit";};};
-    private:
-        class Pair
-        {
-            private:
-                Pair();
-                std::string const name;
-                AForm*(*fct)(std::string const &);
-            public:
-                Pair(std::string const& name, AForm*(*fct)(std::string const&));
-                Pair(const Pair& other);
-                Pair& operator=(const Pair& other);
-                bool    correspond(std::string const & name)const;
-                AForm*   execute(std::string const& target) const;
-        };
-        Pair *list[9];
 };
 
 #endif

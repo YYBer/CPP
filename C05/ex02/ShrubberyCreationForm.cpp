@@ -6,13 +6,13 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:57:57 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 15:46:36 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/02 20:33:34 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm:: ShrubberyCreationForm(std::string name): AForm(name, 145, 137), _name(name) {}
+ShrubberyCreationForm:: ShrubberyCreationForm(std::string name): AForm(name, 145, 137) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {}
 
@@ -23,7 +23,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 
 ShrubberyCreationForm&  ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other)
 {
-    this->_name = other._name;
+    (void) other;
     return *this;
 }
 

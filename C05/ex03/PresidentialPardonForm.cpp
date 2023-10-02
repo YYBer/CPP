@@ -6,13 +6,13 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:57:32 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 16:23:31 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/02 21:53:04 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(std::string name): AForm(name, 25, 5), _name(name) {}
+PresidentialPardonForm::PresidentialPardonForm(std::string name): AForm(name, 25, 5) {}
 
 PresidentialPardonForm::~PresidentialPardonForm(void) {}
 
@@ -23,7 +23,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& oth
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
 {
-    this->_name = other._name;
+    (void)other;
     return *this;
 }
 
@@ -33,7 +33,7 @@ void    PresidentialPardonForm::execute(Bureaucrat const & executor) const
         throw RightException();
     if (!this->isSigned())
         throw SignException();
-    std::cout << this->_name << " has been pardoned by Zaphod Beeblebrox." << std::endl; 
+    std::cout << this->getName() << " has been pardoned by Zaphod Beeblebrox." << std::endl; 
 }
 
 AForm*   PresidentialPardonForm::target(std::string const& target)

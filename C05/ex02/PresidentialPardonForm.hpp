@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 14:57:40 by yli               #+#    #+#             */
-/*   Updated: 2023/09/25 14:57:41 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/02 21:50:49 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ class PresidentialPardonForm: public AForm
     PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 
     void    execute(Bureaucrat const & executor) const;
-    private:
-        std::string _name;
 };
 
 #endif

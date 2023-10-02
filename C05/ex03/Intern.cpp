@@ -1,46 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Intern.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/02 21:49:29 by yli               #+#    #+#             */
+/*   Updated: 2023/10/02 21:49:30 by yli              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Intern.hpp"
 
-Intern::Pair::Pair(std::string const& name, AForm*(*fct)(std::string const&)):
-   name(name), fct(fct){}
+Intern::Intern(void) {}
 
-Intern::Pair::Pair(Pair const& other): name(other.name), fct(other.fct) {}
-
-Intern::Pair::~Pair(){}
-
-Intern::Pair&  Intern::Pair::operator=(const Pair& other)
-{
-   (void)other;
-   return *this;
-}
-
-bool  Intern::Pair::correspond(std::string const& name) const
-{
-   return (this->name == name);
-}
-
-AForm*   Intern::Pair::execute(std::string const& target) const
-{
-   return ((this->fct)(target));
-}
-
-Intern::Intern(void)
-{
-   this->list[0] = new Intern::Pair("PresidentialPardon1", PresidentialPardonForm::target);
-   this->list[1] = new Intern::Pair("PresidentialPardon2", PresidentialPardonForm::target);
-   this->list[2] = new Intern::Pair("PresidentialPardon3", PresidentialPardonForm::target);
-   this->list[3] = new Intern::Pair("RobotmyRequest1", RobotmyRequestForm::target);
-   this->list[4] = new Intern::Pair("RobotmyRequest2", RobotmyRequestForm::target);
-   this->list[5] = new Intern::Pair("RobotmyRequest3", RobotmyRequestForm::target);
-   this->list[6] = new Intern::Pair("ShrubberyCreation1", ShrubberyCreationForm::target);
-   this->list[7] = new Intern::Pair("ShrubberyCreation2", ShrubberyCreationForm::target);
-   this->list[8] = new Intern::Pair("ShrubberyCreation3", ShrubberyCreationForm::target);
-}
-
-Intern::~Intern(void)
-{
-   for(size_t  i =0; i < 9; ++i)
-      delete this->list[i];
-}
+Intern::~Intern(void) {}
 
 Intern::Intern(const Intern& other)
 {
@@ -53,18 +27,36 @@ Intern&    Intern::operator=(const Intern& other)
    return *this;
 }
 
-AForm*   makeForm(std::string const & formName, std::string const &target)
+AForm*   Intern::makeForm(std::string const & formName, std::string const &target)
 {
-   AForm*   tmp = NULL;
-   for(size_t  i = 0; !tmp&&i < 9; ++i)
-      if (this->list[i]->conrrespond(formName))
-         tmp = this->list[i]->execute(target);
-   if (tmp == NULL)
+   std::string formNames[] = {"RobotmyRequestForm", "PresidentialPardonForm", "ShrubberyCreationForm"};
+   int i = 0;
+   for (i = 0; i < 3; ++i)
    {
-      std::cout << formName << "does not exist" << std::endl;
-      throw Intern::FormDoesNotExistException();
+      if (formName == formNames[i])
+         break;
    }
-   else
-      std::cout << "Intern creates " << *tmp <<std::endl;
-   return (tmp);
+   switch(i)
+   {
+      case 0:
+      {
+         std::cout << "Intern creates " << formName <<std::endl;
+         return new RobotmyRequestForm(target);
+      }
+      case 1:
+      {
+         std::cout << "Intern creates " << formName <<std::endl;
+         return new PresidentialPardonForm(target);
+      }
+      case 2:
+      {
+         std::cout << "Intern creates " << formName <<std::endl;
+         return new ShrubberyCreationForm(target);
+      }
+      default:
+      {
+         std::cout << formName << " doesn’t exist"  <<std::endl;
+         return NULL;
+      }
+   }
 }
