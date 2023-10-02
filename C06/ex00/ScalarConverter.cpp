@@ -1,21 +1,16 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter(std::string const& argv)
-{
-   _argv = argv;
-   _str = argv.c_str();
-   _int = 0;
-   _float = 0;
-   _double = 0;
-   _char = '\0';
-   _isChar = false;
-   _isInt = false;
-   _isFloat = false;
-   _isDouble = false;
-   convert();
-}
+std::string   ScalarConverter::_argv = "";
+const char* ScalarConverter::_str = NULL;
+int   ScalarConverter::_int = 0;
+float ScalarConverter::_float = 0;
+double   ScalarConverter::_double = 0;
+char  ScalarConverter::_char = '\0';
+bool  ScalarConverter::_isChar = false;
+bool  ScalarConverter::_isInt = false;
+bool  ScalarConverter::_isFloat = false;
+bool  ScalarConverter::_isDouble = false;
 
-ScalarConverter::~ScalarConverter(void) {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other)
 {
@@ -24,7 +19,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter& other)
 
 ScalarConverter&    ScalarConverter::operator=(const ScalarConverter& other)
 {
-   this->_argv = other._argv;
+   (void)other;
    return *this;
 }
 
@@ -102,14 +97,15 @@ void  ScalarConverter::checkFormat(void)
       _isChar = true;
 }
 
-void    ScalarConverter::convert(void)
+void    ScalarConverter::convert(char *argv)
 {
+   _argv = argv;
    checkFormat();
    if (!_isChar)
    {
-      _int = atoi(this->_argv.c_str());
-      _float = atof(this->_argv.c_str());
-      _double = atof(this->_argv.c_str());
+      _int = atoi(_argv.c_str());
+      _float = atof(_argv.c_str());
+      _double = atof(_argv.c_str());
       if (_int < 32)
          _str = "Non displayable";
       else

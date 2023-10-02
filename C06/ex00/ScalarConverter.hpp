@@ -11,29 +11,28 @@
 class ScalarConverter
 {
     public:
-        ScalarConverter(std::string const& argv);
-        ~ScalarConverter(void);
-        ScalarConverter(const ScalarConverter& other);
-        ScalarConverter& operator=(const ScalarConverter& other);
-        void    convert(void);
-        //void  checkChar(void);
-        void  checkFormat(void);
-        int   checkTimes(char c);
-        bool  checkAllInt(void);
-        bool  checkDouble(void);
-        bool  checkFloat(void);
+        static void    convert(char*   argv);
 
     private:
-        std::string _argv;
-        const char*   _str;
-        char  _char;
-        int _int;
-        float   _float;
-        double  _double;
-        bool    _isChar;
-        bool    _isInt;
-        bool    _isFloat;
-        bool    _isDouble;
+        static std::string _argv;
+        static const char*   _str;
+        static char  _char;
+        static int _int;
+        static float   _float;
+        static double  _double;
+        static bool    _isChar;
+        static bool    _isInt;
+        static bool    _isFloat;
+        static bool    _isDouble;
+        ScalarConverter(){};
+        ~ScalarConverter(void) {};
+        ScalarConverter(const ScalarConverter& other);
+        ScalarConverter& operator=(const ScalarConverter& other);
+        static void  checkFormat(void);
+        static int   checkTimes(char c);
+        static bool  checkAllInt(void);
+        static bool  checkDouble(void);
+        static bool  checkFloat(void);
 };
 
 #endif
