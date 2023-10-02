@@ -16,16 +16,12 @@ class ScalarConverter
         ScalarConverter(const ScalarConverter& other);
         ScalarConverter& operator=(const ScalarConverter& other);
         void    convert(void);
-        void  checkDigit(void);
-        bool  checkFloat(void);
-        void  checkFloat2(void);
-        void  checkChar(void);
-        bool  checkContainInt(void);
+        //void  checkChar(void);
+        void  checkFormat(void);
+        int   checkTimes(char c);
         bool  checkAllInt(void);
         bool  checkDouble(void);
-        void  checkDouble2(void);
-        bool  checkFormat(void);
-        int   checkTimes(char c);
+        bool  checkFloat(void);
 
     private:
         std::string _argv;
