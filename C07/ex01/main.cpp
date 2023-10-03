@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/03 15:51:01 by yli               #+#    #+#             */
+/*   Updated: 2023/10/03 15:51:02 by yli              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "iter.hpp"
 
 int main()
@@ -24,3 +36,9 @@ int main()
 
     return 0;   
 }
+
+/*
+In C++ when you pass a function as an argument to another function, 
+you should provide the function's name without the parentheses and arguments. 
+This is because you are passing a pointer to the function, not actually calling the function.
+*/
