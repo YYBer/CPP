@@ -6,13 +6,13 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:16:57 by yli               #+#    #+#             */
-/*   Updated: 2023/10/04 16:48:24 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/04 17:32:24 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(unsigned int n): _n(n) {}//std::cout << "_n: " << _n << std::endl;}
+Span::Span(unsigned int n): _n(n) {}
 
 Span::~Span(void)
 {
