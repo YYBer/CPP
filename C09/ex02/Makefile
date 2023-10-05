@@ -1,4 +1,4 @@
-NAME 	= btc
+NAME 	= PmergeMe
 
 CC 		= c++
 FLAGS 	= -Wall -Wextra -Werror -std=c++98

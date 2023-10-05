@@ -1,6 +1,6 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(void) {}
+BitcoinExchange::BitcoinExchange(std::string argv):_argv(argv) {}
 
 BitcoinExchange::~BitcoinExchange(void) {}
 
@@ -11,6 +11,13 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
 
 BitcoinExchange&    BitcoinExchange::operator=(const BitcoinExchange& other)
 {
-   (void)other;
+   this->_argv = other._argv;
    return *this;
 }
+
+bool    BitcoinExchange::validDatum(void)
+{
+
+}
+
+
