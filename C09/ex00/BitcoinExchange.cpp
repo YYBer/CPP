@@ -4,7 +4,7 @@ BitcoinExchange::BitcoinExchange(std::string argv):_argv(argv)
 {
    fillList();
    validFile();
-   std::cout << "in constractor: "<< _output << std::endl;
+   std::cout << _output;
 }
 
 BitcoinExchange::~BitcoinExchange(void)
@@ -40,8 +40,31 @@ void    BitcoinExchange::fillList(void)
       getline(tokenStream, datum, ',');
       getline(tokenStream, rate);
       _list[datum] = atof(rate.c_str());
+      time_t unixTime = datumConvert(datum);
+      _list2[unixTime] = atof(rate.c_str());
    }
    ifs.close();
+}
+
+time_t  BitcoinExchange::datumConvert(const std::string& datum)
+{
+      struct tm timeInfo;
+      memset(&timeInfo, 0, sizeof(struct tm));
+      if (sscanf(datum.c_str(), "%d-%d-%d", &timeInfo.tm_year, &timeInfo.tm_mon, &timeInfo.tm_mday) != 3)
+         return -1;
+      std::cout << timeInfo.tm_year << timeInfo.tm_mon << std::endl;
+      timeInfo.tm_year -= 1900;
+      timeInfo.tm_mon -= 1;
+      timeInfo.tm_hour = 0;
+      timeInfo.tm_min = 0;
+      timeInfo.tm_sec = 0;
+      if(strptime(datum.c_str(), "%Y-%m-%d", &timeInfo) == NULL)
+         return -1;
+      time_t unixTime = mktime(&timeInfo);
+      if (unixTime == -1)
+         return -1;
+      return unixTime;
+      // std::cout << "unixTime "<< unixTime  << unixTime + 1<< std::endl;   
 }
 
 bool    BitcoinExchange::validDatum(std::string datum)
@@ -66,21 +89,26 @@ bool    BitcoinExchange::validDatum(std::string datum)
       return false;
    if ((dayi < 1 || dayi > 30) && (monthi == 2 || monthi == 4 || monthi == 6 || monthi == 9 || monthi == 11))
       return false;
-   // std::cout << "0" << datum << std::endl;
-   printOutfile(datum + " => ");
+   _datum = datum;
    return true;
 }
 
 int    BitcoinExchange::validQuantity(std::string quantity)
 {
-   double quan = atof(quantity.c_str());
+   float quan = atof(quantity.c_str());
    if (quan < 0)
       return -1;
-   else if (quan > 2147483647)
-      return 1;
+   else if (quan >= static_cast<float>(__INT_MAX__))
+		return 1;
    _quan = quan;
-   printOutfile(quantity + " = ");
+   _quantity = quantity;
+   // printOutfile(quantity + " = ");
    return 0; 
+}
+
+float    BitcoinExchange::closestDate(const std::string& datum)
+{
+   
 }
 
 void    BitcoinExchange::validFile(void)
@@ -94,9 +122,9 @@ void    BitcoinExchange::validFile(void)
       throw InputError();
    while(std::getline(ifs, line))
    {
-      // std::cout << line << std::endl;
-      if (line.find('|') == std::string::npos)
-         throw InputError();
+      std::cout << line << std::endl;
+      // if (line.find('|') == std::string::npos)
+      //    throw InputError();
       std::istringstream lineStream(line);
       std::string datum;
       std::string a;
@@ -106,32 +134,50 @@ void    BitcoinExchange::validFile(void)
       getline(lineStream, a, '|');
       getline(lineStream, b, ' ');
       getline(lineStream, quantity);
+      _datum = datum;
+      _quantity = quantity;
+      std::string msg = "";
       // std::cout << "datum:" << datum << "quantity:" << quantity << std::endl;
       if (!validDatum(datum))
-         printOutfile("Error: bad input" + datum + "\n");
+         msg = "Error: bad input => " + _datum + "\n";
       if (validQuantity(quantity) == -1)
-         printOutfile("Error: not a positive number.\n");
-      else if (validQuantity(quantity) == 0)
-         printOutfile("Error: too large a number.\n");
-      double result(0);
-      for (std::map<std::string, double>::iterator it = _list.begin(); it != _list.end(); ++it)
+         msg = "Error: not a positive number.\n";
+      else if (validQuantity(quantity) == 1)
+         msg = "Error: too large a number.\n";
+      float result(0);
+      // for (std::map<std::string, float>::iterator it = _list.begin(); it != _list.end(); ++it)
+      // {
+      //    // std::cout << "it->first" << it->first << "it->second" << it->second << std::endl;
+      //    if (!datum.compare(it->first))
+      //    {
+      //       // std::cout << "it->second" << it->second << std::endl;
+      //       result = _quan * it->second;
+      //    }
+      //    // else result = closestDate(datum);
+      // }
+
+
+      for (std::map<time_t, float>::iterator it = _list2.begin(); it != _list2.end(); ++it)
       {
+         time_t unixTime = datumConvert(datum);
          // std::cout << "it->first" << it->first << "it->second" << it->second << std::endl;
-         if (!datum.compare(it->first))
+         if (unixTime == it->first)
          {
             // std::cout << "it->second" << it->second << std::endl;
             result = _quan * it->second;
-            break;
          }
+         else result = _quan * closestDate(datum);
       }
-      // std::cout << "_quan: " << _quan << "result" << result << std::endl;
       std::ostringstream oss;
       oss << result;
-      printOutfile(oss.str() + '\n');
+      _oss = oss.str();
+      if (msg == "")
+         msg = _datum + " => " + _quantity + " = " + _oss + "\n";
+      printOutfile(msg);
    }
 }
 
-void    BitcoinExchange::printOutfile(const std::string& original)
+void    BitcoinExchange::printOutfile(const std::string& msg)
 {
-   _output += original;
+   _output +=  msg;
 }
