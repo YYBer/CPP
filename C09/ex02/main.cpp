@@ -7,5 +7,11 @@ int main(int argc, char** argv)
         std::cerr << "wrong arguments\n";
         return 1;
     }
-    PmergeMe pm(argc, argv);
+    try {
+        PmergeMe pm(argc, argv);
+    } catch (const PmergeMe::InvalidInput &e){
+        std::cerr << e.what() << std::endl;
+    } catch (const PmergeMe::ParsingError &e){
+        std::cerr << e.what() << std::endl;
+    }
 }

@@ -50,7 +50,7 @@ bool     PmergeMe::validInput(int argc, char **argv)
 
 void    PmergeMe::vclistSort1(void)
 {
-   for(int i = 0; i < _vclist.size() - 1; i += 2)
+   for(unsigned int i = 0; i < _vclist.size() - 1; i += 2)
    {
       if (_vclist[i] < _vclist[i + 1])
       {
@@ -59,7 +59,7 @@ void    PmergeMe::vclistSort1(void)
          _vclist[i + 1] = tmp2;
       }
    }
-   for(int i = 0; i < _vclist.size() - 3; i += 4)
+   for(unsigned int i = 0; i < _vclist.size() - 3; i += 4)
    {
       if (_vclist[i] > _vclist[i + 2])
       {
@@ -79,11 +79,11 @@ void    PmergeMe::vcMerge(int i, std::vector<int>& up)
       up.insert(up.begin(), i);
       return;
    }
-   for(size_t size = 0; size < up.size(); ++size)
+   for(size_t size = 1; size < up.size(); ++size)
    {
       if (i < up[i] && i > up[i - 1])
       {
-         up.insert(up.begin() + i - 1, i);
+         up.insert(up.begin() + i, i);
          break;
       }
    }
@@ -102,21 +102,24 @@ void    PmergeMe::vclistSort2(void)
       _vclist.pop_back();
    }
    vclistSort1();
-   for(int i = 0; i < _vclist.size() ; i += 2)
+   for(unsigned int i = 0; i < _vclist.size() ; i += 2)
       up.push_back(_vclist[i]);
-   for(int j = 1; j < _vclist.size(); j += 2)
+   for(unsigned int j = 1; j < _vclist.size(); j += 2)
       down.push_back(_vclist[j]);
    up.insert(up.begin(), down[0]);
-   if (down[1] < up[0])
-      up.insert(up.begin(), down[1]);
-   else if (down[1] < up[1] && down[1] > up[0])
-      up.insert(up.begin() + 1, down[1]);
-   else
-      up.insert(up.begin() + 2, down[1]);
+   vcMerge(down[1], up);
+   // if (down[1] < up[0])
+   //    up.insert(up.begin(), down[1]);
+   // else if (down[1] < up[1] && down[1] > up[0])
+   //    up.insert(up.begin() + 1, down[1]);
+   // else
+   //    up.insert(up.begin() + 2, down[1]);
    int a = 1, b = 1, jacobsthal = 0;
-   for(int i = 4; i < down.size(); ++i)
+   // std::cout << "jacobsthal: " << jacobsthal << " ";
+   for(unsigned int i = 4; i < down.size(); ++i)
    {
       jacobsthal = 2 * a + b;
+      std::cout << "jacobsthal: " << jacobsthal << " ";
       for (int diff = jacobsthal; diff > b; --diff)
          vcMerge(down[diff], up);
       a = b;
@@ -126,9 +129,9 @@ void    PmergeMe::vclistSort2(void)
       vcMerge(tmp, up);
    time_t end;
    time(&end);
-   time_t diff = end - start;
-   std::cout << "diff: " << diff << std::endl;
-   _vcTime = convertTime(diff);
+   // time_t diff = end - start;
+   // std::cout << "diff: " << diff << std::endl;
+   // _vcTime = convertTime(diff);
 }
 
 // std::string convertTime(const time_t& diff)
@@ -160,9 +163,9 @@ void    PmergeMe::printResult(void)
 
 void    PmergeMe::implementCentre(int argc, char **argv)
 {
-   if (!validInput(argc, argv))
-      throw InvalidInput();
-   for (int i = 0; i < argc - 1; ++i)
+   // if (!validInput(argc, argv))
+   //    throw InvalidInput();
+   for (int i = 1; i < argc ; ++i)
    {
       _vclist.push_back(atoi(argv[i]));
       _dqlist.push_back(atoi(argv[i]));

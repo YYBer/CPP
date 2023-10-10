@@ -23,15 +23,17 @@ class PmergeMe
         void    vclistSort2(void);
         void    vcMerge(int i, std::vector<int>& up);
         void    implementCentre(int argc, char **argv);
-        std::string convertTime(const time_t& diff);
+        // std::string convertTime(const time_t& diff);
         class InvalidInput: public std::exception{
-            virtual const char* what() const throw(){
-                return "Error: InvalidInput";
+            public:
+                virtual const char* what() const throw(){
+                    return "Error: InvalidInput";
             };
         };
         class ParsingError: public std::exception{
-            virtual const char* what() const throw(){
-                return "Error: Parsing Error";
+            public:
+                virtual const char* what() const throw(){
+                    return "Error: Parsing Error";
             };
         };
 
