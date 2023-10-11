@@ -40,13 +40,13 @@ void    BitcoinExchange::fillList(void)
       getline(tokenStream, datum, ',');
       getline(tokenStream, rate);
       _list[datum] = atof(rate.c_str());
-      time_t unixTime = datumConvert(datum);
+      time_t unixTime = stringConvertUnixTime(datum);
       _list2[unixTime] = atof(rate.c_str());
    }
    ifs.close();
 }
 
-time_t  BitcoinExchange::datumConvert(const std::string& datum)
+time_t  BitcoinExchange::stringConvertUnixTime(const std::string& datum)
 {
       struct tm timeInfo;
       memset(&timeInfo, 0, sizeof(struct tm));
@@ -106,9 +106,32 @@ int    BitcoinExchange::validQuantity(std::string quantity)
    return 0; 
 }
 
-float    BitcoinExchange::closestDate(const std::string& datum)
+std::string BitcoinExchange::UnixTimeConvertString(const time_t& time);
 {
-   
+   struct tm* timeinfo;
+   std::string dateString;
+   timeinfo = std::localtime(&time);
+   if (timeinfo != NULL)
+   {
+      int year = timeinfo->tm_year + 1900;
+      int month = timeinto->tm_mon + 1;
+      int day = timeinfo->tm_mday;
+      char buffer[11];
+      std::sprintf(buffer, "%04d-%02d-%02d", year, month, day);
+      std::string dateString(buffer);
+   }
+   return dateString;
+}
+
+float    BitcoinExchange::closestDate(time_t time)
+{
+   if 
+   for (std::map<time_t, float>::iterator it = _list2.begin(); it != _list2.end(); ++it)
+   {
+      if (time == it->first)
+         return it->second;
+      time -= 86400;
+   }  
 }
 
 void    BitcoinExchange::validFile(void)
@@ -145,28 +168,16 @@ void    BitcoinExchange::validFile(void)
       else if (validQuantity(quantity) == 1)
          msg = "Error: too large a number.\n";
       float result(0);
-      // for (std::map<std::string, float>::iterator it = _list.begin(); it != _list.end(); ++it)
-      // {
-      //    // std::cout << "it->first" << it->first << "it->second" << it->second << std::endl;
-      //    if (!datum.compare(it->first))
-      //    {
-      //       // std::cout << "it->second" << it->second << std::endl;
-      //       result = _quan * it->second;
-      //    }
-      //    // else result = closestDate(datum);
-      // }
-
-
+      time_t unixTime = stringConvertUnixTime(datum);
       for (std::map<time_t, float>::iterator it = _list2.begin(); it != _list2.end(); ++it)
       {
-         time_t unixTime = datumConvert(datum);
          // std::cout << "it->first" << it->first << "it->second" << it->second << std::endl;
          if (unixTime == it->first)
          {
             // std::cout << "it->second" << it->second << std::endl;
             result = _quan * it->second;
          }
-         else result = _quan * closestDate(datum);
+         else result = _quan * closestDate(unixTime);
       }
       std::ostringstream oss;
       oss << result;

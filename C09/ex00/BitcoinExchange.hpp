@@ -23,8 +23,9 @@ class BitcoinExchange
         int    validQuantity(std::string quantity);
         void    printOutfile(const std::string& msg);
         void    fillList(void);
-        time_t  datumConvert(const std::string& datum);
-        float    closestDate(const std::string& datum);
+        time_t  stringConvertUnixTime(const std::string& datum);
+        std::string UnixTimeConvertString(const time_t& time);
+        float    closestDate(time_t time);
         class   FileError: public std::exception{
             public:
                 virtual const char* what() const throw(){
