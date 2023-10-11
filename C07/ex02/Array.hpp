@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 15:51:05 by yli               #+#    #+#             */
-/*   Updated: 2023/10/03 16:24:54 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/11 17:44:18 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,15 @@
 
 #include <iostream>
 #include <exception>
-
+#include <iostream>
+#include <vector>
+#include <ctime>
+#include <cstring>
+#include <deque>
+#include <cstdlib>
+#include <climits>
+#include <algorithm>
+#include <iomanip>
 
 template<typename T>
 class Array
