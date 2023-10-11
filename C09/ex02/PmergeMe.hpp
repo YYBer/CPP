@@ -21,6 +21,7 @@ class PmergeMe
         void    printOutvc(const std::vector<int>& list);
         void    printOutdq(void);
         bool    validInput(int argc, char **argv);
+        void    vcSimpleSort(void);
         void    vclistSort1(void);
         void    vclistSort2(void);
         void    vcMerge(int i, std::vector<int>& up);

@@ -7,10 +7,8 @@ PmergeMe::PmergeMe(int argc, char **argv)
 
 PmergeMe::~PmergeMe(void) 
 {
-   if (_vclist.size())
-      _vclist.clear();
-   if (_dqlist.size())
-      _dqlist.clear();
+   _vclist.clear();
+   _dqlist.clear();
 }
 
 PmergeMe::PmergeMe(const PmergeMe& other): _vclist(other._vclist), _dqlist(other._dqlist)
@@ -73,7 +71,6 @@ bool    PmergeMe::vclistSort2sorted(const std::vector<int>& list)
    return true;
 }
 
-
 void    PmergeMe::vclistSort1(void)
 {
    for(unsigned int i = 0; i < _vclist.size() - 1; i += 2)
@@ -92,6 +89,7 @@ void    PmergeMe::vclistSort1(void)
          break;
    }
 }
+
 void    PmergeMe::vcMerge(int i, std::vector<int>& up)
 {
    if (i < up[0])
@@ -99,6 +97,11 @@ void    PmergeMe::vcMerge(int i, std::vector<int>& up)
       up.insert(up.begin(), i);
       return;
    }
+   // if (i > up[up.size()])
+   // {
+   //    up.push_back(i);
+   //    return;
+   // }
    for(size_t size = 1; size < up.size(); ++size)
    {
       if (i > up[size - 1] && i < up[size])
@@ -106,17 +109,57 @@ void    PmergeMe::vcMerge(int i, std::vector<int>& up)
    }
 }
 
+void    PmergeMe::vcSimpleSort(void)
+{
+   if (_vclist.size() == 2)
+   {
+      if (_vclist[0] > _vclist[1])
+      {
+         int tmp = _vclist[0];
+         _vclist[0] = _vclist[1];
+         _vclist[1] = tmp;
+      }
+   }
+   if (_vclist.size() == 3)
+   {
+      if ((_vclist[0] > _vclist[1]) && (_vclist[0] > _vclist[2]) && (_vclist[1] < _vclist[2])) // 3 1 2
+      {
+         _vclist.push_back(_vclist[0]);
+         _vclist.erase(_vclist.begin());
+      }
+      else if ((_vclist[0] > _vclist[1]) && (_vclist[0] > _vclist[2]) && (_vclist[1] > _vclist[2])) // 3 2 1
+      {
+         _vclist.push_back(_vclist[1]);
+         _vclist.push_back(_vclist[0]);
+         _vclist.erase(_vclist.begin());
+         _vclist.erase(_vclist.begin());
+      }
+      else if ((_vclist[0] < _vclist[1]) && (_vclist[0] > _vclist[2]) && (_vclist[1] > _vclist[2])) // 2 3 1
+      {
+         _vclist.insert(_vclist.begin(), _vclist[2]);
+         _vclist.pop_back();
+      }
+      else if ((_vclist[0] > _vclist[1]) && (_vclist[0] < _vclist[2]) && (_vclist[1] < _vclist[2])) // 2 1 3
+      {
+         int tmp = _vclist[0];
+         _vclist.erase(_vclist.begin());
+         _vclist.insert(_vclist.begin() + 1, tmp);
+      }
+      else if ((_vclist[0] < _vclist[1]) && (_vclist[0] < _vclist[2]) && (_vclist[1] > _vclist[2])) // 1 3 2
+      {
+         int tmp = _vclist[2];
+         _vclist.pop_back();
+         _vclist.insert(_vclist.begin() + 1, tmp);
+      }
+   }   
+}
+
 void    PmergeMe::vclistSort3(void)
 {
    clock_t start = clock();
    if (_vclist.size() <= 3)
    {
-      while(1)
-      {
-         vclistSort2();
-         if (vclistSort2sorted(_vclist))
-            break;
-      }
+      vcSimpleSort();
       clock_t end = clock();
       double diff = double(end - start) / CLOCKS_PER_SEC * 1000000.0;
       _vcTime = diff;
@@ -196,22 +239,17 @@ void    PmergeMe::dqMerge(int i, std::deque<int>& up)
       up.push_front(i);
       return ;
    }
+   // if (i > up[up.size()])
+   // {
+   //    up.push_back(i);
+   //    return;
+   // }
    for(size_t size = 1; size < up.size(); ++size)
    {
       if (i > up[size - 1] && i < up[size])
          up.insert(up.begin() + size, i);
    }
 }
-
-// bool  PmergeMe::dqSortCheck(void)
-// {
-//    for(unsigned int i = 1; i < _dqlist.size(); ++i)
-//    {
-//       if (_dqlist[i - 1] > _dqlist[i])
-//          return false;
-//    }
-//    return true;
-// }
 
 void  PmergeMe::dqSimpleSort(void)
 {
@@ -226,27 +264,35 @@ void  PmergeMe::dqSimpleSort(void)
    }
    if (_dqlist.size() == 3)
    {
-      if ((_dqlist[0] > _dqlist[1]) && (_dqlist[0] > _dqlist[2]) && (_dqlist[1] < _dqlist[2]))
+      if ((_dqlist[0] > _dqlist[1]) && (_dqlist[0] > _dqlist[2]) && (_dqlist[1] < _dqlist[2])) // 3 1 2
       {
          _dqlist.push_back(_dqlist[0]);
          _dqlist.pop_front();
       }
-      else if ((_dqlist[0] > _dqlist[1]) && (_dqlist[0] > _dqlist[2]) && (_dqlist[1] > _dqlist[2]))
+      else if ((_dqlist[0] > _dqlist[1]) && (_dqlist[0] > _dqlist[2]) && (_dqlist[1] > _dqlist[2])) // 3 2 1
       {
          _dqlist.push_back(_dqlist[1]);
-         _dqlist.push_back(_dqlist[2]);
+         _dqlist.push_back(_dqlist[0]);
          _dqlist.pop_front();
          _dqlist.pop_front();
       }
-      else if ((_dqlist[0] < _dqlist[1]) && (_dqlist[0] > _dqlist[2]) && (_dqlist[1] > _dqlist[2]))
+      else if ((_dqlist[0] < _dqlist[1]) && (_dqlist[0] > _dqlist[2]) && (_dqlist[1] > _dqlist[2])) // 2 3 1
       {
          _dqlist.push_front(_dqlist[2]);
          _dqlist.pop_back();
       }
-      else if ((_dqlist[0] < _dqlist[1]) && (_dqlist[0] > _dqlist[2]) && (_dqlist[1] < _dqlist[2]))
-         _dqlist.swap(_dqlist[0], _dqlist[1]);
-      else if ((_dqlist[0] < _dqlist[1]) && (_dqlist[0] < _dqlist[2]) && (_dqlist[1] > _dqlist[2]))
-         _dqlist.swap(_dqlist[1], _dqlist[2]);
+      else if ((_dqlist[0] > _dqlist[1]) && (_dqlist[0] < _dqlist[2]) && (_dqlist[1] < _dqlist[2])) // 2 1 3
+      {
+         int tmp = _dqlist[0];
+         _dqlist.pop_front();
+         _dqlist.insert(_dqlist.begin() + 1, tmp);
+      }
+      else if ((_dqlist[0] < _dqlist[1]) && (_dqlist[0] < _dqlist[2]) && (_dqlist[1] > _dqlist[2])) // 1 3 2
+      {
+         int tmp = _dqlist[2];
+         _dqlist.pop_back();
+         _dqlist.insert(_dqlist.begin() + 1, tmp);
+      }
    }
 }
 
@@ -294,8 +340,12 @@ void    PmergeMe::dqlistSort(void)
    for(unsigned int i = 4; i < down.size(); ++i)
    {
       jacobsthal = 2 * a + b;
+      std::cout << "ja" << jacobsthal << std::endl;
       for (int diff = jacobsthal; diff >= b + 1; --diff)
+      {
+         std::cout << "down[diff]" << down[diff] << " diff" << diff << std::endl;
          dqMerge(down[diff], up);
+      }
       a = b;
       b = jacobsthal;
    }
@@ -321,14 +371,14 @@ void    PmergeMe::printResult(void)
    std::cout << "Before: " << std::flush;
    printOutvc(_vclist);
 
-   // vclistSort3();
+   vclistSort3();
    dqlistSort();
-   // std::cout << "After: ";
-   // printOutvc(_vclist);
+   std::cout << "After: ";
+   printOutvc(_vclist);
    std::cout << "After: ";
    printOutdq(_dqlist);
 
-   // std::cout << "Time to process a range of " << _vclist.size() << " elements with std::vector<int> : " << std::fixed << std::setprecision(2) << _vcTime << " microseconds.\n";
+   std::cout << "Time to process a range of " << _vclist.size() << " elements with std::vector<int> : " << std::fixed << std::setprecision(2) << _vcTime << " microseconds.\n";
    std::cout << "Time to process a range of " << _dqlist.size() << " elements with std::deque<int> : " << std::fixed << std::setprecision(2) << _dqTime << " microseconds.\n";
 }
 
@@ -339,8 +389,11 @@ void    PmergeMe::implementCentre(int argc, char **argv)
       throw InvalidInput();
    for (int i = 1; i < argc ; ++i)
    {
-      _vclist.push_back(atoi(argv[i]));
-      _dqlist.push_back(atoi(argv[i]));
+      int a = atoi(argv[i]);
+      if (a < 0)
+         throw InvalidInput();
+      _vclist.push_back(a);
+      _dqlist.push_back(a);
    }
    if (!_vclist.size() || !_dqlist.size())
       throw ParsingError();
