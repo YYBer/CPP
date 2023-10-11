@@ -21,6 +21,7 @@ class PmergeMe
         void    printOutvc(const std::vector<int>& list);
         void    printOutdq(void);
         bool    validInput(int argc, char **argv);
+        bool    repeatCheck(int a);
         void    vcSimpleSort(void);
         void    vclistSort1(void);
         void    vclistSort2(void);
@@ -32,7 +33,6 @@ class PmergeMe
         bool    dqlistPairSortCheck(const std::deque<int>& list);
         void    dqMerge(int i, std::deque<int>& up);
         void    dqlistSort(void);
-        // bool    dqSortCheck(void);
         void    printOutdq(const std::deque<int>& list);
         void    implementCentre(int argc, char **argv);
         class InvalidInput: public std::exception{

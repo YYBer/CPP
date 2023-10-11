@@ -345,7 +345,6 @@ void    PmergeMe::dqlistSort(void)
    for(unsigned int i = 4; i < down.size(); ++i)
    {
       jacobsthal = 2 * a + b;
-      // std::cout << "ja" << jacobsthal << " down[jacobsthal]" << down[jacobsthal] <<std::endl;
       if ((unsigned int)jacobsthal > down.size())
       {
          jacobsthal = b;
@@ -390,6 +389,17 @@ void    PmergeMe::printResult(void)
    std::cout << "Time to process a range of " << _dqlist.size() << " elements with std::deque<int> : " << std::fixed << std::setprecision(2) << _dqTime << " microseconds.\n";
 }
 
+bool  PmergeMe::repeatCheck(int a)
+{
+   for (unsigned int i = 0; i < _vclist.size(); ++i)
+      if (a == _vclist[i])
+         return false;
+   for (unsigned int i = 0; i < _dqlist.size(); ++i)
+      if (a == _dqlist[i])
+         return false;
+   return true;
+}
+
 
 void    PmergeMe::implementCentre(int argc, char **argv)
 {
@@ -398,6 +408,8 @@ void    PmergeMe::implementCentre(int argc, char **argv)
    for (int i = 1; i < argc ; ++i)
    {
       int a = atoi(argv[i]);
+      if (!repeatCheck(a))
+         throw InvalidInput();
       if (a < 0)
          throw InvalidInput();
       _vclist.push_back(a);
