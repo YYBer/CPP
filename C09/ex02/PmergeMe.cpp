@@ -97,16 +97,13 @@ void    PmergeMe::vcMerge(int i, std::vector<int>& up)
       up.insert(up.begin(), i);
       return;
    }
-   // if (i > up[up.size()])
-   // {
-   //    up.push_back(i);
-   //    return;
-   // }
    for(size_t size = 1; size < up.size(); ++size)
    {
       if (i > up[size - 1] && i < up[size])
          up.insert(up.begin() + size, i);
    }
+   if (i > up[up.size() - 1])
+      up.push_back(i);
 }
 
 void    PmergeMe::vcSimpleSort(void)
@@ -184,11 +181,18 @@ void    PmergeMe::vclistSort3(void)
    for(unsigned int i = 4; i < down.size(); ++i)
    {
       jacobsthal = 2 * a + b;
+      if ((unsigned int)jacobsthal > down.size())
+      {
+         jacobsthal = b;
+         break;
+      }
       for (int diff = jacobsthal; diff >= b + 1; --diff)
          vcMerge(down[diff], up);
       a = b;
       b = jacobsthal;
    }
+   while ((unsigned int)jacobsthal < down.size())
+      vcMerge(down[jacobsthal++], up);
    if (tmp >= 0)
       vcMerge(tmp, up);
    _vclist.clear();
@@ -234,21 +238,22 @@ bool  PmergeMe::dqlistPairSortCheck(const std::deque<int>& list)
 
 void    PmergeMe::dqMerge(int i, std::deque<int>& up)
 {
+   int check = 0;
    if (i < up[0])
    {
       up.push_front(i);
       return ;
    }
-   // if (i > up[up.size()])
-   // {
-   //    up.push_back(i);
-   //    return;
-   // }
-   for(size_t size = 1; size < up.size(); ++size)
+   for(size_t size = 1; size <= up.size(); ++size)
    {
       if (i > up[size - 1] && i < up[size])
+      {
          up.insert(up.begin() + size, i);
+         check = 1;
+      }
    }
+   if (check == 0 && i > up[up.size() - 1])
+      up.push_back(i);
 }
 
 void  PmergeMe::dqSimpleSort(void)
@@ -340,15 +345,19 @@ void    PmergeMe::dqlistSort(void)
    for(unsigned int i = 4; i < down.size(); ++i)
    {
       jacobsthal = 2 * a + b;
-      std::cout << "ja" << jacobsthal << std::endl;
-      for (int diff = jacobsthal; diff >= b + 1; --diff)
+      // std::cout << "ja" << jacobsthal << " down[jacobsthal]" << down[jacobsthal] <<std::endl;
+      if ((unsigned int)jacobsthal > down.size())
       {
-         std::cout << "down[diff]" << down[diff] << " diff" << diff << std::endl;
-         dqMerge(down[diff], up);
+         jacobsthal = b;
+         break;
       }
+      for (int diff = jacobsthal; diff >= b + 1; --diff)
+         dqMerge(down[diff], up);
       a = b;
       b = jacobsthal;
    }
+   while ((unsigned int)jacobsthal < down.size())
+      dqMerge(down[jacobsthal++], up);
    if (tmp >= 0)
       dqMerge(tmp, up);
    _dqlist.clear();
@@ -370,12 +379,11 @@ void    PmergeMe::printResult(void)
 {
    std::cout << "Before: " << std::flush;
    printOutvc(_vclist);
-
    vclistSort3();
    dqlistSort();
-   std::cout << "After: ";
+   std::cout << "After:  ";
    printOutvc(_vclist);
-   std::cout << "After: ";
+   std::cout << "After:  ";
    printOutdq(_dqlist);
 
    std::cout << "Time to process a range of " << _vclist.size() << " elements with std::vector<int> : " << std::fixed << std::setprecision(2) << _vcTime << " microseconds.\n";

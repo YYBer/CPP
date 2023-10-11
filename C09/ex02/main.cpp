@@ -19,3 +19,5 @@ int main(int argc, char** argv)
 //4 14 8 7 3 19 6 5 22 45 78 11 36 
 
 //3 1 2 4 6 44 12 32 11 67 90
+
+// ./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
