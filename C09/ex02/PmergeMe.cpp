@@ -32,7 +32,7 @@ PmergeMe&    PmergeMe::operator=(const PmergeMe& other)
 
 bool     PmergeMe::validInput(int argc, char **argv)
 {
-   for (int i = 1; i < argc - 1; ++i)
+   for (int i = 0; i < argc - 1; ++i)
    {
       std::string tmp = argv[i];
       for(size_t j = 0; j < tmp.length(); ++j)
