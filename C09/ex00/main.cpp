@@ -9,13 +9,11 @@ int main(int argc, char** argv)
     }
     try{
     BitcoinExchange exchange(argv[1]);
-    // } catch (const BitcoinExchange::DatumError& e){
-    //     std::cerr << e.what() << std::endl;
+    } catch (const BitcoinExchange::DatumError& e){
+        std::cerr << e.what() << std::endl;
     } catch (const BitcoinExchange::FileError& e){
         std::cerr << e.what() << std::endl;
     } catch (const BitcoinExchange::InputError& e){
         std::cerr << e.what() << std::endl;
-    // } catch (const BitcoinExchange::QuantityError& e){
-    //     std::cerr << e.what() << std::endl;
     }
 }
