@@ -17,3 +17,6 @@ int main (int argc, char** argv)
     }
     return 0;
 }
+
+
+// ./RPN "1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 /"

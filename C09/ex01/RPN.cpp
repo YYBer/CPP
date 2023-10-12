@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:21:39 by yli               #+#    #+#             */
-/*   Updated: 2023/10/06 13:57:12 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/12 22:00:18 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,48 +54,96 @@ bool  RPN::checkInput(void)
    return true;
 }
 
+int RPN::bunchcaculator(std::string& line)
+{
+   int sum = line[0] - 48;
+   std::stack<int> bunch;
+   for (unsigned int i = 1; i < line.size(); ++i)
+   {
+      std::cout << "old sum " << _sum << std::endl;
+      if (line[i] >= '0' && line[i] <= '9')
+         bunch.push(line[i]);
+      if (line[i] == '+' || line[i] == '-' || line[i] == '*' || line[i] == '/')
+      {
+         if (line[i] == '+')
+         {
+            if (!bunch.size())
+               throw WrongNumberOrToken();
+            _sum += (bunch.top() - 48);
+         }
+         else if (line[i] == '-')
+         {
+            if (!bunch.size())
+               throw WrongNumberOrToken();            
+            _sum -= (bunch.top() - 48);
+         }
+         else if (line[i] == '*')
+         {
+            if (!bunch.size())
+               throw WrongNumberOrToken();            
+            _sum *= (bunch.top() - 48);
+         }
+         else if (line[i] == '/')
+         {
+            if (!bunch.size())
+               throw WrongNumberOrToken(); 
+            else if (bunch.top() == '0')
+               throw WrongArgument();
+            _sum /= (bunch.top() - 48);
+         }
+         bunch.pop();
+      }
+   }
+   if (!bunch.size())
+      return sum;
+   else
+      return -1;
+}
+
 int RPN::caculator(void)
 {
    if (!checkInput())
       throw WrongArgument();
-   _sum = _argv[0] - 48;
-   for (unsigned int i = 1; i < _argv.size(); ++i)
-   {
-      if (_argv[i] >= '0' && _argv[i] <= '9')
-         this->_number.push(_argv[i]);
-      if (_argv[i] == '+' || _argv[i] == '-' || _argv[i] == '*' || _argv[i] == '/')
-      {
-         if (_argv[i] == '+')
-         {
-            if (!_number.size())
-               throw WrongNumberOrToken();
-            _sum += (_number.top() - 48);
-         }
-         else if (_argv[i] == '-')
-         {
-            if (!_number.size())
-               throw WrongNumberOrToken();            
-            _sum -= (_number.top() - 48);
-         }
-         else if (_argv[i] == '*')
-         {
-            if (!_number.size())
-               throw WrongNumberOrToken();            
-            _sum *= (_number.top() - 48);
-         }
-         else if (_argv[i] == '/')
-         {
-            if (!_number.size())
-               throw WrongNumberOrToken(); 
-            else if (_number.top() == '0')
-               throw WrongArgument();
-            _sum /= (_number.top() - 48);
-         }
-         _number.pop();
-      }
-   }
+   // _sum = _argv[0] - 48;
+   // for (unsigned int i = 1; i < _argv.size(); ++i)
+   // {
+   //    std::cout << "old sum " << _sum << std::endl;
+   //    if (_argv[i] >= '0' && _argv[i] <= '9')
+   //       this->_number.push(_argv[i]);
+   //    if (_argv[i] == '+' || _argv[i] == '-' || _argv[i] == '*' || _argv[i] == '/')
+   //    {
+   //       if (_argv[i] == '+')
+   //       {
+   //          if (!_number.size())
+   //             throw WrongNumberOrToken();
+   //          _sum += (_number.top() - 48);
+   //       }
+   //       else if (_argv[i] == '-')
+   //       {
+   //          if (!_number.size())
+   //             throw WrongNumberOrToken();            
+   //          _sum -= (_number.top() - 48);
+   //       }
+   //       else if (_argv[i] == '*')
+   //       {
+   //          if (!_number.size())
+   //             throw WrongNumberOrToken();            
+   //          _sum *= (_number.top() - 48);
+   //       }
+   //       else if (_argv[i] == '/')
+   //       {
+   //          if (!_number.size())
+   //             throw WrongNumberOrToken(); 
+   //          else if (_number.top() == '0')
+   //             throw WrongArgument();
+   //          _sum /= (_number.top() - 48);
+   //       }
+   //       std::cout << "sum " << _sum  << " number "<< _number.top() << std::endl;
+   //       _number.pop();
+   //    }
+   // }
    
-   if (_number.size())
-      throw WrongNumberOrToken();
-   return _sum;
+   // if (_number.size())
+   //    throw WrongNumberOrToken();
+   // return _sum;
 }

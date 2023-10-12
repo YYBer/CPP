@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:22:01 by yli               #+#    #+#             */
-/*   Updated: 2023/10/05 16:22:13 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/12 20:21:44 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class RPN
         ~RPN(void);
         RPN(const RPN& other);
         RPN& operator=(const RPN& other);
+        int bunchcaculator(std::string& line);
         int caculator(void);
         bool  checkInput(void);
         class WrongArgument: public std::exception{
