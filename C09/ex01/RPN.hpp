@@ -6,7 +6,7 @@
 /*   By: yli <yli@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 16:22:01 by yli               #+#    #+#             */
-/*   Updated: 2023/10/12 20:21:44 by yli              ###   ########.fr       */
+/*   Updated: 2023/10/14 13:16:24 by yli              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ class RPN
         ~RPN(void);
         RPN(const RPN& other);
         RPN& operator=(const RPN& other);
-        int bunchcaculator(std::string& line);
         int caculator(void);
-        bool  checkInput(void);
+        bool  checkInput1(void);
+        bool  checkInput2(void);
         class WrongArgument: public std::exception{
             public:
                 virtual const char* what() const throw()
@@ -39,9 +39,8 @@ class RPN
                     return "don't have enough number/token.";};};
 
     private:
-        int _sum;
         std::string _argv;
-        std::stack<char> _number;
+        std::stack<int> _stack;
 };
 
 #endif

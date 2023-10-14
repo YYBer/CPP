@@ -17,3 +17,6 @@ int main(int argc, char** argv)
         std::cerr << e.what() << std::endl;
     }
 }
+
+// 2015-11-24,319.64
+// 2015-11-27,358

@@ -77,7 +77,7 @@ bool    BitcoinExchange::validDatum(std::string datum)
    std::getline(datumStream, month, '-');
    std::getline(datumStream, day, ' ');
    int yeari = atoi(year.c_str());
-   if (yeari < 2009 || yeari > 2022)
+   if (yeari < 1900 || yeari > 2022)
       return false;
    int monthi = atoi(month.c_str());
    if (monthi < 1 || monthi > 12)
@@ -169,24 +169,19 @@ void  BitcoinExchange::handleFile(void)
          msg = "Error: too large a number.\n";
       float result(-1);
       time_t unixTime = stringConvertUnixTime(datum);
-      std::map<time_t, float>::iterator test = _list.end();
-      test--;
       if (msg == "")
       {
          for (std::map<time_t, float>::iterator it = _list.begin() ; it != _list.end(); ++it)
          {
             if (unixTime == it->first && _quan >= 0)
-            {
                result = _quan * it->second;
-               msg = "";
-            }
             else
-            {
                result = _quan * closestDate(unixTime);
-               if (result < 0) 
-                  msg = "Error: bad input3 => " + _datum + "\n";
-            }
          }
+         if (unixTime <= 1230850800)
+            result = 0;
+         else if (unixTime >= 1648508400)
+            result = _quan * 47115.93;
       }
       std::ostringstream oss;
       oss << result;

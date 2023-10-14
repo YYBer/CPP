@@ -410,7 +410,7 @@ void    PmergeMe::implementCentre(int argc, char **argv)
       int a = atoi(argv[i]);
       if (!repeatCheck(a))
          throw InvalidInput();
-      if (a < 0)
+      if (a <= 0)
          throw InvalidInput();
       _vclist.push_back(a);
       _dqlist.push_back(a);
